@@ -6,19 +6,10 @@
         <link href="{% static "css/base.css" %}" rel="stylesheet">
     </head>
     <body>
-        <div id="header">
-            <div class="logo">
-                <span >Openrelatie</span>
-                <span>Dating</span>
+            <div id="content">
+                {% block content %}
+                {% endblock %}
             </div>
-            #blz 161
-
-
-            
-        </div>
-        <div id="content">
-            {% block content %}
-            {% endblock %}
         </div>
     </body>
 </html>

@@ -4,22 +4,55 @@
 
 
 {% block content %}
-    <h1>Log in</h1>
-    {% if form.errors %}
-        <p>
-            Your username and password did not match.
-            Please try again
-        </p>
-    {% else %}
-        <p>Please, use the following form to log-in: </p>
-    {% endif %}
-    <div class="login-form">
-        <form action="{% url 'login'%}" method="post">
-            {{form.as_p}}
-            {% csrf_token %}
+     
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Maak account</h1>
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="{% url 'login'%}" method="POST">
+			<h1>Inloggen</h1>
+            {{form}}
+			{% csrf_token %}
             <input type="hidden" name="next" value="{{next}}"/>
-            <p><input type="submit" value="Log-in"></p>
-        </form>
-    </div>
+            <button type="submit" value="Log-in">Inloggen</button>
+			<a href="#">Forgot your password? fix</a>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1 class="panel_intro">Welkom terug!</h1>
+				<p class="panel_text">Interessante koppels wachten op je</p>
+				<button class="ghost" id="signIn">Naar binnen</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1 class="panel_intro">Welkom avonturiers</h1>
+				<p class="panel_text">Vul je persoonlijke gegevens in en begin je avontuur.</p>
+				<button class="ghost" id="signUp">Aanmelden</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
 
 {% endblock %}
